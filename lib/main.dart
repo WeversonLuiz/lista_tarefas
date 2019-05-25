@@ -18,6 +18,17 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
 
   List _toDoList = [];
+
+  //Obter dados
+  Future<String> _readData() async {
+    try {
+      final file = await _getFile();
+      return file.readAsString();
+    } catch (e) {
+      return null;
+    }
+  }
+
   //Salvar os dados
   Future<File> _saveData() async {
     String dados = json.encode(_toDoList);
